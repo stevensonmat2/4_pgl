@@ -34,9 +34,11 @@ test("hexadecimal integer literal lexing test", () => {
   expect(tokens[2].text).toEqual("#1");
 
   tokens = tokenize("1-#1");
-  expect(tokens.length).toEqual(2);
-  expect(tokens[1].type).toEqual("hex");
-  expect(tokens[1].text).toEqual("-#1");
+  expect(tokens.length).toEqual(3);
+  expect(tokens[0].type).toEqual("float");
+  expect(tokens[1].type).toEqual("dash");
+  expect(tokens[2].type).toEqual("hex");
+  expect(tokens[2].text).toEqual("#1");
 
   tokens = tokenize("#ABCD");
   expect(tokens.length).toEqual(1);
@@ -59,14 +61,9 @@ test("hexadecimal integer literal lexing test", () => {
   expect(tokens[0].text).toEqual("#0a1B2c3D4");
 
   tokens = tokenize("-#0a1B2c3D4");
-  expect(tokens.length).toEqual(1);
-  expect(tokens[0].type).toEqual("hex");
-  expect(tokens[0].text).toEqual("-#0a1B2c3D4");
-
-  tokens = tokenize("---#0a1B2c3D4");
-  expect(tokens.length).toEqual(3);
-  expect(tokens[2].type).toEqual("hex");
-  expect(tokens[2].text).toEqual("-#0a1B2c3D4");
+  expect(tokens.length).toEqual(2);
+  expect(tokens[1].type).toEqual("hex");
+  expect(tokens[1].text).toEqual("#0a1B2c3D4");
 
   tokens = tokenize("ABCD");
   expect(tokens.length).toEqual(1);
