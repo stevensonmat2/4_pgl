@@ -56,7 +56,7 @@
           this,
           [iolib.identity],
           iolib.prettyPrintTreeArray,
-          iolib.curry(main.parse)(main.expressionRules)
+          main.parse
         );
         return false;
       "
@@ -76,7 +76,7 @@
           this,
           [iolib.identity],
           iolib.prettyPrintTree,
-          iolib.curry(main.parseUnambiguous)(main.expressionRules)
+          main.parseUnambiguous
         );
         return false;
       "
