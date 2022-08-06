@@ -13,6 +13,8 @@ const lexingRules: Rules = {
   parenR: /\)/,
   equal: /=/,
   comma: /,/,
+  hex: /#[A-Fa-f0-9]+/,
+  // char: /'[\d|\D|\w|\s|\.]'/,
 };
 
 export const lexer: Lexer = compileLexer(lexingRules);

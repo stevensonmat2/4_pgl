@@ -95,18 +95,22 @@ expression1 -> expression2
   {% id %}
 
 
-expression2 -> expression1 %times expression1
+expression2 -> expression2 %times expression3
   {% postprocessWith(buildTimesExpr) %}
 
 expression2 -> expression3
   {% id %}
 
+expression3 -> expression4 %exponent expression3
+  {% postprocessWith(buildExponentExpr) %}
 
-expression3 -> atom {% id %}
+expression3 -> expression4
+  {% id %}
 
-expression3 -> %dash expression3
+expression4 -> atom {% id %}
+
+expression4 -> %dash expression4
   {% postprocessWith(buildNegateExpr) %}
-
 
 atom -> %parenL expression1 %parenR
   {% postprocessWith(unparenthesize) %}
